@@ -1,0 +1,2 @@
+insert into klanten(voornaam, familienaam, straat, huisnr, postcode, gemeente, gebruikersnaam, paswoord)
+values ('test', 'test', 'test', 'test', 'test', 'test', 'test', '{bcrypt}$2a$10$fvu60n2OOVowAYv/UcSKGeOl0XKM0tn6L9P/zGYxiHYkn513W5ngS');

@@ -1,0 +1,45 @@
+.genres {
+    padding: 0.5rem;
+    padding-bottom: 15px;
+    margin: auto;
+    background-color: #343a40;
+    vertical-align: middle;
+    border-radius: 7px;
+}
+
+.genres a, #sort-table a {
+    padding: 0 2px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.genres a:hover, #sort-table a:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.list-group .list-group-item a {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.list-group .list-group-item a:hover {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+#genres-list, #voorstellingen-list, #mandje {
+    text-align: center;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}

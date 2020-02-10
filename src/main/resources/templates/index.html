@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments::head(title='Cultuurhuis')"></head>
+    <body>
+        <nav th:replace="fragments::menu"></nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 m-auto" id="genres-list">
+                    <h1 class="mt-3">Voorstellingen<img class="ml-3" th:src="@{/images/voorstellingen.png}" alt="voorstellingen"></h1>
+                    <h2 class="mr-auto">Genres:</h2>
+                    <div class="form-group has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input class="form-control form-control-lg m-auto" id="search" type="text" placeholder="Zoeken...">
+                    </div>
+
+                    <ul class="list-group mt-2" id="original-list">
+                        <li class="list-group-item" th:each="genre:${genres}" th:object="${genre}">
+                            <a th:href="@{/genres/{id}(id=*{id})}" th:text="${genre.naam}" th:value="${genre.id}"></a>
+                        </li>
+                    </ul>
+                    <div id="match-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="|/js/searchGenre.js|"></script>
+    </body>
+</html>

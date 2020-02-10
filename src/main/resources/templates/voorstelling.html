@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments::head(title =${voorstelling} == null ? 'Voorstelling niet gevonden' : 'Cultuurhuis | Voorstelling')">
+    </head>
+
+<body>
+    <nav th:replace="fragments::menu"></nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 m-auto" id="voorstelling-info">
+                <h1 class="mt-3" th:text="${voorstelling.titel + ' - ' + voorstelling.uitvoerders}"><img th:src="@{/images/reserveren.png}" alt="reserveren"></h1>
+                <h1 th:if="${voorstelling} == null">Voorstelling niet gevonden: <span th:text="${id}"></span></h1>
+                    <div th:if="${voorstelling} != null" th:object="${voorstelling}">
+                        <dl class="row mt-3">
+                            <dt class="col-sm-3">Voorstelling:</dt>
+                            <dd class="col-sm-9" th:text="*{titel}"/></dd>
+                            <dt class="col-sm-3">Uitvoerders:</dt>
+                            <dd class="col-sm-9" th:text="*{uitvoerders}"/></dd>
+                            <dt class="col-sm-3">Datum:</dt>
+                            <dd class="col-sm-9" th:text="*{{datum}}"/></dd>
+                            <dt class="col-sm-3">Prijs:</dt>
+                            <dd class="col-sm-9" th:text="*{ '€ ' + {prijs}}"/></dd>
+                            <dt class="col-sm-3">Vrije plaatsen:</dt>
+                            <dd class="col-sm-9" th:text="*{vrijeplaatsen}"/></dd>
+                        </dl>
+                        <form th:object="${bestelForm}" th:action="@{/voorstellingen/{id}/bestellen(id=${voorstelling.id})}" method="post">
+                            <div class="form-group" th:if="${voorstelling.vrijeplaatsen} > 0">
+                                <label>Plaatsen
+                                    <span th:errors="*{aantal}"></span>
+                                    <span th:if="${foutboodschap} != null" th:text="${foutboodschap}"></span>
+                                    <input th:field="*{aantal}" type='number' autofocus required min="1">
+                                </label>
+                            <input type="submit" class="btn btn-primary" value="Reserveren">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/js/preventDoubleSubmit.js}"></script>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <head th:replace="fragments::head(title='Cultuurhuis | Inloggen')"></head>
+        <body>
+
+        <nav th:replace="fragments::menu"></nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 m-auto">
+                    <h1 class="mt-3">Login<img class="ml-3" th:src="@{/images/bevestig.png}" alt="bevestig"></h1>
+
+                    <div th:if="${param.error} != null" class="fout">Verkeerde gebruikersnaam of paswoord</div>
+                    <br>
+                    <div sec:authorize="isAnonymous()">
+                        <form th:action="@{/login}" method="post">
+                            <label>Gebruikersnaam:</label>
+                            <input class="form-control input py-1 d-flex" name="username" required autofocus>
+                            <label>Paswoord:</label>
+                            <input class="form-control input py-1 d-flex" name="password" type="password" required>
+                            <input class="btn btn-info btn-block mt-2" type="submit" value="Aanmelden">
+                        </form>
+
+                        <form th:action="@{/registratie}">
+                            <input class="btn btn-info btn-block mt-2" type="submit" value='Registreren'>
+                        </form>
+                    </div>
+
+<!--                    <div sec:authorize="isAuthenticated()" th:if="*{klant} != null">-->
+<!--                        <p class="text-center">Klant gegevens:</p>-->
+<!--                        <p class="text-center" th:text="${klant.voornaam} + ' ' + ${klant.familienaam}"/>-->
+<!--                        <p class="text-center">Lever adres:</p>-->
+<!--                        <p class="text-center" th:text="${klant.adres.straat} + ' ' + ${klant.adres.huisnr}"/>-->
+<!--                        <p class="text-center" th:text="${klant.adres.postcode} + ' ' + ${klant.adres.gemeente}"/>-->
+
+<!--                        <h2>Plaats bestelling</h2>-->
+<!--                        <a th:href="@{/mandje}">-->
+<!--                            <button class="btn btn-info btn-block">Bevestig</button>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

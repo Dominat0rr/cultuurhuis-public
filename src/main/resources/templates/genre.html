@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title =${genre} == null ? 'Genre niet gevonden' : 'Cultuurhuis | ' + ${genre.naam})">
+    </head>
+
+    <body>
+        <nav th:replace="fragments::menu"></nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 m-auto">
+                    <h1 class="mt-3">Voorstellingen<img class="ml-3" th:src="@{/images/voorstellingen.png}" alt="voorstellingen"></h1>
+
+                    <h2>Genres</h2>
+                    <div class="genres">
+                        <ul class="list-group list-group-horizontal mt-2">
+                            <li class="list-inline-item" th:each="genre:${genres}" th:object="${genre}">
+                                <a th:href="@{/genres/{id}(id=*{id})}" th:text="${genre.naam}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <br>
+
+                    <h1 th:if="${genre} == null">Genre niet gevonden: <span th:text="${id}"></span></h1>
+                    <div th:if="${genre} != null">
+                        <h1 th:if="${genre} != null" th:text="${genre.naam} + ' voorstellingen'"></h1>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Datum</th>
+                                <th>Titel</th>
+                                <th>Uitvoerders</th>
+                                <th>Prijs</th>
+                                <th>Vrije plaatsen</th>
+                                <th>Reserveren</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="voorstelling:${voorstellingen}" th:object="${voorstelling}">
+                                <td th:text="${{voorstelling.datum}}"/>
+                                <td th:text="${voorstelling.titel}"/>
+                                <td th:text="${voorstelling.uitvoerders}"/>
+                                <td th:text="${'€ ' + {voorstelling.prijs}}"/>
+                                <td th:text="${voorstelling.vrijeplaatsen}"/>
+                                <td><a th:href="@{/voorstellingen/{id}(id=*{id})}">Reserveren</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
