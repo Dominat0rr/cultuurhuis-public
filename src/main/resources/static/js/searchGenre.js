@@ -7,21 +7,28 @@ genres = Array.from(genres);
 
 
 const searchGenres = searchText => {
-    let matches = genres.filter((genre) => {
+    let matches = [];
+   if (searchText.length === 0) {
+        matches = [];
+        outputHtmlOriginal(matches);
+        return;
+    }
+
+    matches = genres.filter((genre) => {
         const regex = new RegExp(`^${searchText}`, 'gi');
         return genre.text.match(regex);
     });
-    console.log(matches);
-
-    if (searchText.length === 0) {
-        matches = [];
-    }
 
     outputHtml(matches);
 };
 
+const outputHtmlOriginal = () => {
+        matchList.innerHTML = '';
+        document.getElementById("original-list").style.display = "block";
+}
+
 const outputHtml = matches => {
-    if (matches.length > 0) {
+        console.log("blub");
         document.getElementById("original-list").style.display = "none";
         const html = matches.map(match => `
             <ul class="list-group mt-2">
@@ -33,11 +40,6 @@ const outputHtml = matches => {
         ).join('');
 
         matchList.innerHTML = html;
-    }
-    else {
-        matchList.innerHTML = '';
-        document.getElementById("original-list").style.display = "block";
-    }
 };
 
 search.addEventListener('input', () => searchGenres(search.value));

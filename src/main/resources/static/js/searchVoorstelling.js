@@ -7,21 +7,29 @@ voorstellingen = Array.from(voorstellingen);
 
 
 const searchVoorstellingen = searchText => {
-    let matches = voorstellingen.filter((voorstelling) => {
+    let matches = [];
+   if (searchText.length === 0) {
+        matches = [];
+        outputHtmlOriginal(matches);
+        return;
+    }
+
+    matches = voorstellingen.filter((voorstelling) => {
         const regex = new RegExp(`^${searchText}`, 'gi');
         return voorstelling.text.match(regex);
     });
     console.log(matches);
 
-    if (searchText.length === 0) {
-        matches = [];
-    }
-
     outputHtml(matches);
 };
 
+const outputHtmlOriginal = () => {
+        matchList.innerHTML = '';
+        document.getElementById("original-list").style.display = "block";
+}
+
+
 const outputHtml = matches => {
-    if (matches.length > 0) {
         document.getElementById("original-list").style.display = "none";
         const html = matches.map(match => `
             <ul class="list-group mt-2">
@@ -33,11 +41,6 @@ const outputHtml = matches => {
         ).join('');
 
         matchList.innerHTML = html;
-    }
-    else {
-        matchList.innerHTML = '';
-        document.getElementById("original-list").style.display = "block";
-    }
 };
 
 search.addEventListener('input', () => searchVoorstellingen(search.value));
