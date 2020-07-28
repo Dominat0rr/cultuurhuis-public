@@ -1,3 +1,19 @@
+.container {
+    width: 80% !important;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 960px !important;
+    }
+    .container.login {
+        max-width: 460px !important;
+    }
+    .container.genre {
+        max-width: 1060px !important;
+    }
+}
+
 .genres {
     padding: 0.5rem;
     padding-bottom: 15px;
@@ -5,6 +21,13 @@
     background-color: #343a40;
     vertical-align: middle;
     border-radius: 7px;
+}
+
+.genres ul {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin: auto;
 }
 
 .genres a, #sort-table a {
@@ -22,10 +45,6 @@
 
 .list-group .list-group-item a:hover {
     color: rgba(0, 0, 0, 0.9);
-}
-
-#genres-list, #voorstellingen-list, #mandje {
-    text-align: center;
 }
 
 .has-search .form-control {

@@ -6,22 +6,20 @@
         <nav th:replace="fragments::menu"></nav>
 
         <div class="container">
-            <div class="row">
-                <div class="col-md-8 m-auto" id="genres-list">
-                    <h1 class="mr-auto">Genres:</h1>
-                    <div class="form-group has-search">
-                        <span class="fa fa-search form-control-feedback"></span>
-                        <input class="form-control form-control-lg m-auto" id="search" type="text" placeholder="Zoeken...">
-                    </div>
-
-                    <ul class="list-group mt-2" id="original-list">
-                        <li class="list-group-item" th:each="genre:${genres}" th:object="${genre}">
-                            <a th:href="@{/genres/{id}(id=*{id})}" th:text="${genre.naam}" th:value="${genre.id}"></a>
-                        </li>
-                    </ul>
-
-                    <div id="match-list"></div>
+            <div id="genres-list">
+                <h1 class=" mt-5 mr-auto text-center">Genres:</h1>
+                <div class="form-group has-search">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input class="form-control form-control-lg m-auto" id="search" type="text" placeholder="Zoeken...">
                 </div>
+
+                <ul class="list-group mt-2" id="original-list">
+                    <li class="list-group-item text-center" th:each="genre:${genres}" th:object="${genre}">
+                        <a th:href="@{/genres/{id}(id=*{id})}" th:text="${genre.naam}" th:value="${genre.id}"></a>
+                    </li>
+                </ul>
+
+                <div id="match-list"></div>
             </div>
         </div>
 
